@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-apprentice-form',
@@ -8,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ApprenticeFormComponent implements OnInit {
   apprenticeForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder, private router: Router) { 
     this.apprenticeForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -18,6 +19,10 @@ export class ApprenticeFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  save() {
+    this.router.navigateByUrl('/admin/apprentice/list');
   }
 
 }

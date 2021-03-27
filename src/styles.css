@@ -10,7 +10,8 @@ body {
   height: 100%;
   margin: 32px;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034);
-  background-color: white; }
+  background-color: white;
+  padding: 12px; }
 
 .inside-container {
   padding: 2%; }

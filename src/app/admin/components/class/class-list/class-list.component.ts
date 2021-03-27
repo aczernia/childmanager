@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ClassOutputModel } from 'src/app/models/class.output-model';
 
 @Component({
@@ -13,9 +14,13 @@ export class ClassListComponent implements OnInit {
     }
   ]
   displayedColumns = ['name'];
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  redirectToAddForm() {
+    this.router.navigateByUrl('/admin/class/create');
   }
 
 }

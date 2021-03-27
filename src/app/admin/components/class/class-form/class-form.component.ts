@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-class-form',
@@ -8,9 +9,17 @@ import { FormGroup } from '@angular/forms';
 })
 export class ClassFormComponent implements OnInit {
   classForm: FormGroup;
-  constructor() { }
+  constructor(private formBuilder: FormBuilder, private router: Router) {
+    this.classForm = this.formBuilder.group({
+      name: ['', Validators.required]
+    })
+  }
 
   ngOnInit(): void {
+  }
+
+  save() {
+    this.router.navigateByUrl('/admin/class/list');
   }
 
 }
