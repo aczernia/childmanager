@@ -12,8 +12,15 @@ const routes: Routes = [
   {
     path: 'apprentice',
     children: [
-      {path: 'create', component: ApprenticeFormComponent},
-      {path: 'list', component: ApprenticeListComponent}
+      { path: 'create', component: ApprenticeFormComponent},
+      { path: 'list', component: ApprenticeListComponent}
+    ]
+  },
+  {
+    path: 'class',
+    children: [
+      { path: 'create', component: ClassFormComponent},
+      { path: 'list', component: ClassListComponent}
     ]
   }
 ]

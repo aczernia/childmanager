@@ -1,5 +1,6 @@
 <div class="inside-container">
     <h2>Lista uczniów</h2>
+    <button mat-button (click)="redirectToAddForm()" class="submit-button">Dodaj ucznia</button>
     <table mat-table [dataSource]="items" class="table">
         <ng-container matColumnDef="firstName">
             <th mat-header-cell *matHeaderCellDef> Imię </th>
