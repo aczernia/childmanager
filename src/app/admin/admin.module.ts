@@ -6,6 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModuleModule } from '../material-module/material-module.module';
 import { AdminComponent } from './components/admin.component';
+import { ClassFormComponent } from './components/class/class-form/class-form.component';
+import { ClassListComponent } from './components/class/class-list/class-list.component';
 const routes: Routes = [
   {
     path: 'apprentice',
@@ -16,7 +18,7 @@ const routes: Routes = [
   }
 ]
 @NgModule({
-  declarations: [ApprenticeFormComponent, ApprenticeListComponent, AdminComponent],
+  declarations: [ApprenticeFormComponent, ApprenticeListComponent, AdminComponent, ClassFormComponent, ClassListComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
