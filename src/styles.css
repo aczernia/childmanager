@@ -1,4 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%; }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #c8c8c8; }
+
+.view-container {
+  height: 100%;
+  margin: 32px;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034);
+  background-color: white; }
+
+.inside-container {
+  padding: 2%; }
+  .inside-container form {
+    display: flex;
+    flex-direction: column; }
+  .inside-container mat-form-field {
+    width: 50%; }
+
+.submit-button {
+  width: 120px;
+  background-color: #00c800;
+  color: white; }
+
+.table {
+  width: 100%; }

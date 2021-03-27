@@ -1,0 +1,20 @@
+<div class="inside-container">
+    <h2>Tworzenie ucznia</h2>
+    <form [formGroup]="apprenticeForm">
+        <mat-form-field>                
+            <input matInput placeholder="Imię" />
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Nazwisko" />
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Data urodzenia" [matDatepicker]="picker" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Pesel" />
+        </mat-form-field>
+        <button mat-button class="submit-button">Zapisz</button>
+    </form>
+</div>
