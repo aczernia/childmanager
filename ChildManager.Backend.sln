@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChildManager", "ChildManager\ChildManager.csproj", "{BCA228E0-7EEF-424F-B71D-A5995BD3D839}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildManager", "ChildManager.Backend\ChildManager.csproj", "{2AA9DC86-3DDE-41A1-8392-295864A7399E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BCA228E0-7EEF-424F-B71D-A5995BD3D839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCA228E0-7EEF-424F-B71D-A5995BD3D839}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BCA228E0-7EEF-424F-B71D-A5995BD3D839}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BCA228E0-7EEF-424F-B71D-A5995BD3D839}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AA9DC86-3DDE-41A1-8392-295864A7399E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AA9DC86-3DDE-41A1-8392-295864A7399E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AA9DC86-3DDE-41A1-8392-295864A7399E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AA9DC86-3DDE-41A1-8392-295864A7399E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

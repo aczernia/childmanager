@@ -11,25 +11,23 @@ namespace ChildManager.Services
 {
     public interface IStudentService
     {
-        StudentDto GetById(int id);
-        IEnumerable<StudentDto> GetAll();
-        int Create(CreateStudentDto dto);
+        StudentOutputModel GetById(int id);
+        IEnumerable<StudentOutputModel> GetAll();
+        int Create(StudentInputModel dto);
         bool Delete(int id);
-        bool Update(int id, UpdateStudentDto dto);
+        bool Update(int id, StudentInputModel dto);
     }
 
     public class StudentService : IStudentService
     {
         private readonly ChildManagerDbContext _dbContext;
-        private readonly IMapper _mapper;
 
         public StudentService(ChildManagerDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
-            _mapper = mapper;
         }
 
-        public bool Update(int id, UpdateStudentDto dto)
+        public bool Update(int id, StudentInputModel inputModel)
         {
             var student = _dbContext
                 .Students
@@ -39,10 +37,10 @@ namespace ChildManager.Services
             if (student is null)
                 return false;
 
-            student.Name = dto.Name;
-            student.LastName = dto.LastName;
-            student.BirthDate = dto.BirthDate;
-            student.Pesel = dto.Pesel;
+            student.Name = inputModel.Name;
+            student.LastName = inputModel.LastName;
+            student.BirthDate = inputModel.BirthDate;
+            student.Pesel = inputModel.Pesel;
 
             _dbContext.SaveChanges();
 
@@ -50,32 +48,47 @@ namespace ChildManager.Services
 
         }
 
-        public StudentDto GetById(int id)
+        public StudentOutputModel GetById(int id)
         {
             var student = _dbContext.Students.Include(x => x.Class).FirstOrDefault(r => r.Id == id);
 
             if (student is null) return null;
 
 
-            var result = _mapper.Map<StudentDto>(student);
-
-            return result;
-
+            return new StudentOutputModel()
+            {
+                Id = student.Id,
+                Name = student.Name,
+                LastName = student.LastName,
+                BirthDate = student.BirthDate,
+                Pesel = student.Pesel
+            };
         }
 
-        public IEnumerable<StudentDto> GetAll()
+        public IEnumerable<StudentOutputModel> GetAll()
         {
             var students = _dbContext
                 .Students.Include(x => x.Class).ToList();
 
-            var studentDtos = _mapper.Map<List<StudentDto>>(students);
-
-            return studentDtos;
+            return students.Select(a => new StudentOutputModel()
+            {
+                Id = a.Id,
+                Name = a.Name,
+                LastName = a.LastName,
+                BirthDate = a.BirthDate,
+                Pesel = a.Pesel
+            }).ToList();
         }
 
-        public int Create(CreateStudentDto dto)
+        public int Create(StudentInputModel dto)
         {
-            var student = _mapper.Map<Student>(dto);
+            var student = new Student()
+            {
+                LastName = dto.LastName,
+                Name = dto.Name,
+                Pesel = dto.Pesel,
+                BirthDate = dto.BirthDate,
+            };
             _dbContext.Students.Add(student);
             _dbContext.SaveChanges();
 
@@ -94,7 +107,6 @@ namespace ChildManager.Services
                 _dbContext.SaveChanges();
 
                 return true;
-
         }
     }
 }

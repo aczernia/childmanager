@@ -8,6 +8,10 @@ import { MaterialModuleModule } from '../material-module/material-module.module'
 import { AdminComponent } from './components/admin.component';
 import { ClassFormComponent } from './components/class/class-form/class-form.component';
 import { ClassListComponent } from './components/class/class-list/class-list.component';
+import { TeacherService } from '../services/teacher.service';
+import { StudentService } from '../services/student.service';
+import { ClassService } from '../services/class.service';
+import { HttpClientModule } from '@angular/common/http';
 const routes: Routes = [
   {
     path: 'apprentice',
@@ -27,10 +31,12 @@ const routes: Routes = [
 @NgModule({
   declarations: [ApprenticeFormComponent, ApprenticeListComponent, AdminComponent, ClassFormComponent, ClassListComponent],
   imports: [
+    HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     MaterialModuleModule
-  ]
+  ],
+  providers: [ClassService, StudentService, TeacherService]
 })
 export class AdminModule { }

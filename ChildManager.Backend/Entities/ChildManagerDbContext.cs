@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ChildManager.Entities
 {
     public class ChildManagerDbContext : DbContext
     {
         private string _connectionString =
-            "Server=(localdb)\\mssqllocaldb;Database=ChildManagerDb;Trusted_Connection=True;";
+            "Server=.;Database=ChildManagerDb;Trusted_Connection=True;Integrated Security=true";
 
         public DbSet<Student> Students { get; set; }
         public DbSet<Class> Classes { get; set; }
@@ -44,5 +39,7 @@ namespace ChildManager.Entities
         {
             optionsBuilder.UseSqlServer(_connectionString);
         }
+
+
     }
 }

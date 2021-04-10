@@ -2,18 +2,18 @@
     <h2>Tworzenie ucznia</h2>
     <form [formGroup]="apprenticeForm">
         <mat-form-field>                
-            <input matInput placeholder="Imię" />
+            <input matInput placeholder="Imię" formControlName="name" />
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Nazwisko" />
+            <input matInput placeholder="Nazwisko" formControlName="lastName" />
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Data urodzenia" [matDatepicker]="picker" />
+            <input matInput placeholder="Data urodzenia" [matDatepicker]="picker" formControlName="dateOfBirth" />
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Pesel" />
+            <input matInput placeholder="Pesel" formControlName="pesel"  />
         </mat-form-field>
         <button mat-button class="submit-button" (click)="save()">Zapisz</button>
     </form>

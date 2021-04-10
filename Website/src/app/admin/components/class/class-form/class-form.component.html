@@ -2,7 +2,7 @@
     <h2>Tworzenie klasy</h2>
     <form [formGroup]="classForm">
         <mat-form-field>                
-            <input matInput placeholder="Nazwa klasy" />
+            <input matInput placeholder="Nazwa klasy" formControlName="name" />
         </mat-form-field>
         <button mat-button class="submit-button" (click)="save()">Zapisz</button>
     </form>

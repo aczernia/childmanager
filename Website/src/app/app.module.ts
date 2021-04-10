@@ -10,6 +10,10 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TeacherModule } from './teacher/teacher.module';
+import { ClassService } from './services/class.service';
+import { StudentService } from './services/student.service';
+import { TeacherService } from './services/teacher.service';
+import { HttpClientModule } from '@angular/common/http';
 const routes: Routes = [
   {
     path: 'admin',
@@ -34,6 +38,8 @@ const routes: Routes = [
     LoginComponent
   ],
   imports: [
+    HttpClientModule,
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModuleModule,
@@ -42,7 +48,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [ClassService, TeacherService, StudentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

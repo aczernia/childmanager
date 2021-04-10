@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChildManager.Controllers
 {
-    [Route("api/childManager/student")]
+    [Route("api/student")]
     public class StudentController : ControllerBase
     {
         private readonly IStudentService _studentService;
@@ -22,7 +22,7 @@ namespace ChildManager.Controllers
             _studentService = studentService;
         }
         [HttpPut]
-        public ActionResult Update([FromBody] UpdateStudentDto dto, [FromBody] int id)
+        public ActionResult Update([FromBody] StudentInputModel dto, [FromBody] int id)
         {
             if (ModelState.IsValid)
             {
@@ -51,7 +51,7 @@ namespace ChildManager.Controllers
 
             return NotFound();
         }
-        public ActionResult<IEnumerable<StudentDto>> GetAll()
+        public ActionResult<IEnumerable<StudentOutputModel>> GetAll()
         {
 
             var studentDto = _studentService.GetAll();
@@ -60,7 +60,7 @@ namespace ChildManager.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<StudentDto> Get([FromRoute] int id)
+        public ActionResult<StudentOutputModel> Get([FromRoute] int id)
         {
             var student = _studentService.GetById(id);
 
@@ -74,11 +74,11 @@ namespace ChildManager.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreatStudent([FromBody] CreateStudentDto dto)
+        public ActionResult CreatStudent([FromBody] StudentInputModel dto)
         {
           var id =  _studentService.Create(dto);
             
-            return Created($"/api/childmanager/{id}", null);
+            return Created($"api/student/{id}", null);
         }
     }
 }

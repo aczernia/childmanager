@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClassOutputModel } from 'src/app/models/class.output-model';
+import { ClassService } from 'src/app/services/class.service';
 
 @Component({
   selector: 'app-class-list',
@@ -8,15 +9,14 @@ import { ClassOutputModel } from 'src/app/models/class.output-model';
   styleUrls: ['./class-list.component.css']
 })
 export class ClassListComponent implements OnInit {
-  items: ClassOutputModel[] = [
-    {
-      name: 'Klasa 1'
-    }
-  ]
   displayedColumns = ['name'];
-  constructor(private router: Router) { }
+  items: ClassOutputModel[];
+  constructor(private router: Router, private classService: ClassService) { }
 
   ngOnInit(): void {
+    this.classService.getAll().subscribe((items) => {
+      this.items = items;
+    })
   }
 
   redirectToAddForm() {
