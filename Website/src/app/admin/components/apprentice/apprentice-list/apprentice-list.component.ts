@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApprenticeOutputModel } from 'src/app/models/apprentice.output-model';
+import { StudentOutputModel } from 'src/app/models/student.output-model';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-apprentice-list',
@@ -8,18 +9,14 @@ import { ApprenticeOutputModel } from 'src/app/models/apprentice.output-model';
   styleUrls: ['./apprentice-list.component.css']
 })
 export class ApprenticeListComponent implements OnInit {
-  items: ApprenticeOutputModel[] = [
-    {
-      birthDate: new Date(),
-      firstName: 'Test',
-      lastName: 'Test',
-      pesel: '111111111'
-    }
-  ]
-  displayedColumns = ['firstName', 'lastName', 'birthDate', 'pesel']
-  constructor(private router: Router) { }
+  items: StudentOutputModel[] = [];
+  displayedColumns = ['name', 'lastName', 'birthDate', 'pesel']
+  constructor(private router: Router, private studentService: StudentService) { }
 
   ngOnInit(): void {
+    this.studentService.getAll().subscribe((items) => {
+      this.items = items;
+    })
   }
 
   redirectToAddForm() {

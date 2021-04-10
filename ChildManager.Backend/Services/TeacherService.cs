@@ -13,27 +13,24 @@ namespace ChildManager.Services
 {
     public interface ITeacherService
     {
-        TeacherDto GetById(int id);
-        IEnumerable<TeacherDto> GetAll();
-        int Create(CreateTeacherDto dto);
-        bool Update(int id, UpdateTeacherDto dto);
+        TeacherOutputModel GetById(int id);
+        IEnumerable<TeacherOutputModel> GetAll();
+        int Create(TeacherInputModel dto);
+        bool Update(int id, TeacherInputModel dto);
         bool Delete(int id);
     }
+
     public class TeacherService : ITeacherService
     {
         private readonly ChildManagerDbContext _dbContext;
-        private readonly IMapper _mapper;
 
-
-
-        public TeacherService(ChildManagerDbContext dbContext, IMapper mapper)
+        public TeacherService(ChildManagerDbContext dbContext)
         {
             _dbContext = dbContext;
-            _mapper = mapper;
         }
 
 
-        public bool Update(int id, UpdateTeacherDto dto)
+        public bool Update(int id, TeacherInputModel dto)
         {
             var teacher = _dbContext.Teachers.FirstOrDefault(x => x.Id == id);
 
@@ -42,7 +39,7 @@ namespace ChildManager.Services
             teacher.Name = dto.Name;
             teacher.LastName = dto.LastName;
             teacher.Email = dto.Email;
-            teacher.TelNumber = dto.TelNumber;
+            teacher.PhoneNumber = dto.PhoneNumber;
 
             _dbContext.SaveChanges();
             return true;
@@ -61,31 +58,48 @@ namespace ChildManager.Services
             return true;
 
         }
-        public TeacherDto GetById(int id)
+        public TeacherOutputModel GetById(int id)
         {
             var teacher = _dbContext
                 .Teachers
                 .FirstOrDefault(x => x.Id == id);
 
             if (teacher is null) return null;
-
-            var resault = _mapper.Map<TeacherDto>(teacher);
-            return resault;
+            return new TeacherOutputModel()
+            {
+                Email = teacher.Email,
+                LastName = teacher.LastName,
+                Name = teacher.Name,
+                Id = teacher.Id,
+                PhoneNumber = teacher.PhoneNumber
+            };
         }
-        public IEnumerable<TeacherDto> GetAll()
+        public IEnumerable<TeacherOutputModel> GetAll()
         {
             var teachers = _dbContext
                 .Teachers
                 .ToList();
 
-            var teachersDto = _mapper.Map<List<TeacherDto>>(teachers);
-            return teachersDto;
+            return teachers.Select(a => new TeacherOutputModel()
+            {
+                Email = a.Email,
+                LastName = a.LastName,
+                Name = a.Name,
+                Id = a.Id,
+                PhoneNumber = a.PhoneNumber
+            }).ToList();
         }
 
 
-        public int Create(CreateTeacherDto dto)
+        public int Create(TeacherInputModel dto)
         {
-            var teacher = _mapper.Map<Teacher>(dto);
+            var teacher = new Teacher()
+            {
+                PhoneNumber = dto.PhoneNumber,
+                LastName = dto.LastName,
+                Email = dto.Email,
+                Name = dto.Name,
+            };
 
             _dbContext.Teachers.Add(teacher);
             _dbContext.SaveChanges();

@@ -8,16 +8,14 @@ using ChildManager.Models;
 using ChildManager.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CreateTeacherDto = ChildManager.Models.CreateTeacherDto;
+using TeacherInputModel = ChildManager.Models.TeacherInputModel;
 
 namespace ChildManager.Controllers
 {
-    [Route("api/childManager/teacher")]
+    [Route("api/teacher")]
     public class TeacherController : ControllerBase
     {
         private readonly ITeacherService _teacherService;
-
-
 
         public TeacherController(ITeacherService teacherService)
         {
@@ -25,7 +23,7 @@ namespace ChildManager.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Update([FromBody] UpdateTeacherDto dto, [FromRoute] int id)
+        public ActionResult Update([FromBody] TeacherInputModel dto, [FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
@@ -55,7 +53,7 @@ namespace ChildManager.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreatTeacher([FromBody] CreateTeacherDto dto)
+        public ActionResult CreatTeacher([FromBody] TeacherInputModel dto)
         {
             if (!ModelState.IsValid)
             {
@@ -64,12 +62,12 @@ namespace ChildManager.Controllers
 
 
             var id = _teacherService.Create(dto);
-            return Created($"/api/childmanager/teacher/{id}", null);
+            return Created($"api/teacher/teacher/{id}", null);
         }
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<TeacherDto>> GetAll()
+        public ActionResult<IEnumerable<TeacherOutputModel>> GetAll()
         {
             var teacherDto = _teacherService.GetAll();
 
@@ -77,7 +75,7 @@ namespace ChildManager.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<TeacherDto> Get([FromRoute] int id)
+        public ActionResult<TeacherOutputModel> Get([FromRoute] int id)
         {
             var teacher = _teacherService.GetById(id);
 

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ChildManager.Models
 {
-    public class CreateTeacherDto
+    public class TeacherInputModel
     {
         [Required]
         public string Name { get; set; }
         public string LastName { get; set; }
         [Phone]
-        public string TelNumber { get; set; }
+        public string PhoneNumber { get; set; }
         [EmailAddress]
         public string Email { get; set; }
     }

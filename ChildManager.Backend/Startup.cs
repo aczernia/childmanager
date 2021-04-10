@@ -27,12 +27,22 @@ namespace ChildManager
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .WithExposedHeaders("Location");
+                });
+            });
             services.AddControllers();
             services.AddDbContext<ChildManagerDbContext>();
             services.AddAutoMapper(this.GetType().Assembly);
-            services.AddScoped<IStudentService, StudentService>();
-            services.AddScoped<ITeacherService, TeacherService>();
+            services.AddTransient<IStudentService, StudentService>();
+            services.AddTransient<ITeacherService, TeacherService>();
+            services.AddTransient<IClassService, ClassService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +56,14 @@ namespace ChildManager
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
+
+            using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<ChildManagerDbContext>();
+                context.Database.EnsureCreated();
+            }
 
             
             app.UseEndpoints(endpoints =>

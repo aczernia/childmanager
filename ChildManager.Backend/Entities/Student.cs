@@ -11,7 +11,7 @@ namespace ChildManager.Entities
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Pesel { get; set; }
-        public string BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
         public Class Class { get; set; }
         public Journal Journal { get; set; }
