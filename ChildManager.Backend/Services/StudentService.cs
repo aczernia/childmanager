@@ -16,6 +16,8 @@ namespace ChildManager.Services
         int Create(StudentInputModel dto);
         bool Delete(int id);
         bool Update(int id, StudentInputModel dto);
+
+        List<StudentOutputModel> GetStudentsFromClass(int classId);
     }
 
     public class StudentService : IStudentService
@@ -110,6 +112,23 @@ namespace ChildManager.Services
                 _dbContext.SaveChanges();
 
                 return true;
+        }
+
+        public List<StudentOutputModel> GetStudentsFromClass(int classId)
+        {
+            var students = _dbContext.Students
+                .Where(a => a.ClassId == classId)
+                .Include(a => a.Class)
+                .Select(a => new StudentOutputModel()
+                {
+                    BirthDate = a.BirthDate,
+                    Id = a.Id,
+                    LastName = a.LastName,
+                    Class = a.Class.ClassName,
+                    Name = a.Name,
+                    Pesel = a.Pesel
+                }).ToList();
+            return students;
         }
     }
 }
