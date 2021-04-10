@@ -66,6 +66,7 @@ namespace ChildManager.Services
 
             return classes.Select(a => new ClassOutputModel()
             {
+                Id = a.Id,
                 Name = a.ClassName
             }).ToList();
         }
