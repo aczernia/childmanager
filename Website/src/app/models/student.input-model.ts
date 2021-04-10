@@ -3,4 +3,5 @@ export class StudentInputModel {
     lastName: string;
     pesel: string;
     birthDate: Date;
+    classId: string;
 }

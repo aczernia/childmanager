@@ -41,7 +41,7 @@ namespace ChildManager.Services
             student.LastName = inputModel.LastName;
             student.BirthDate = inputModel.BirthDate;
             student.Pesel = inputModel.Pesel;
-
+            student.ClassId = inputModel.ClassId;
             _dbContext.SaveChanges();
 
             return true;
@@ -61,7 +61,8 @@ namespace ChildManager.Services
                 Name = student.Name,
                 LastName = student.LastName,
                 BirthDate = student.BirthDate,
-                Pesel = student.Pesel
+                Pesel = student.Pesel,
+                Class = student.Class.ClassName
             };
         }
 
@@ -76,7 +77,8 @@ namespace ChildManager.Services
                 Name = a.Name,
                 LastName = a.LastName,
                 BirthDate = a.BirthDate,
-                Pesel = a.Pesel
+                Pesel = a.Pesel,
+                Class = a.Class.ClassName
             }).ToList();
         }
 
@@ -88,6 +90,7 @@ namespace ChildManager.Services
                 Name = dto.Name,
                 Pesel = dto.Pesel,
                 BirthDate = dto.BirthDate,
+                ClassId = dto.ClassId
             };
             _dbContext.Students.Add(student);
             _dbContext.SaveChanges();

@@ -10,7 +10,7 @@ import { StudentService } from 'src/app/services/student.service';
 })
 export class ApprenticeListComponent implements OnInit {
   items: StudentOutputModel[] = [];
-  displayedColumns = ['name', 'lastName', 'birthDate', 'pesel']
+  displayedColumns = ['name', 'lastName', 'birthDate', 'pesel', 'class']
   constructor(private router: Router, private studentService: StudentService) { }
 
   ngOnInit(): void {

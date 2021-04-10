@@ -14,5 +14,7 @@ namespace ChildManager.Models
         public string LastName { get; set; }
         public string Pesel { get; set; }
         public DateTime BirthDate { get; set; }
+
+        public int ClassId { get; set; }
     }
 }

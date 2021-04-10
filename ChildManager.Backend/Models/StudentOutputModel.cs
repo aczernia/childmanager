@@ -8,6 +8,7 @@ namespace ChildManager.Models
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Pesel { get; set; }
+        public string Class { get; set; }
         public DateTime BirthDate { get; set; }
     }
 }

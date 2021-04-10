@@ -50,7 +50,7 @@ namespace ChildManager.Controllers
 
             return NotFound();
         }
-        public ActionResult<IEnumerable<StudentOutputModel>> GetAll()
+        public ActionResult<IEnumerable<ClassOutputModel>> GetAll()
         {
 
             var classDto = _classService.GetAll();
