@@ -89,6 +89,7 @@ namespace ChildManager
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseAuthorization();
 
             app.UseCors("CorsPolicy");
 

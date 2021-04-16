@@ -6,12 +6,14 @@ using AutoMapper;
 using ChildManager.Entities;
 using ChildManager.Models;
 using ChildManager.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChildManager.Controllers
 {
     [Route("api/student")]
+    [Authorize]
     public class StudentController : ControllerBase
     {
         private readonly IStudentService _studentService;
@@ -40,6 +42,7 @@ namespace ChildManager.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Teacher,Admin")]
         public ActionResult Delete([FromRoute] int id)
         {
             var isDelete = _studentService.Delete(id);
@@ -74,6 +77,7 @@ namespace ChildManager.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,Teacher")]
         public ActionResult CreatStudent([FromBody] StudentInputModel dto)
         {
           var id =  _studentService.Create(dto);

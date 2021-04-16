@@ -6,11 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace ChildManager.Controllers
 {
     [Route("api/class")]
+    [Authorize]
     public class ClassController : ControllerBase
     {
         private readonly IClassService _classService;
@@ -39,6 +41,7 @@ namespace ChildManager.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete([FromRoute] int id)
         {
             var isDelete = _classService.Delete(id);
@@ -73,6 +76,7 @@ namespace ChildManager.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Post([FromBody] ClassInputModel dto)
         {
             var id = _classService.Create(dto);
