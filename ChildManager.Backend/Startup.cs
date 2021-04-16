@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ChildManager.Entities;
 using ChildManager.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace ChildManager
 {
@@ -44,6 +45,7 @@ namespace ChildManager
             services.AddTransient<IStudentService, StudentService>();
             services.AddTransient<ITeacherService, TeacherService>();
             services.AddTransient<IClassService, ClassService>();
+            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddScoped<ChildSeeder>();
             services.AddScoped<IAccountService, AccountService>();
         }
