@@ -27,6 +27,7 @@ namespace ChildManager
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", builder =>
@@ -43,11 +44,13 @@ namespace ChildManager
             services.AddTransient<IStudentService, StudentService>();
             services.AddTransient<ITeacherService, TeacherService>();
             services.AddTransient<IClassService, ClassService>();
+            services.AddScoped<ChildSeeder>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ChildSeeder seeder)
         {
+            seeder.Seed();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
