@@ -45,6 +45,7 @@ namespace ChildManager
             services.AddTransient<ITeacherService, TeacherService>();
             services.AddTransient<IClassService, ClassService>();
             services.AddScoped<ChildSeeder>();
+            services.AddScoped<IAccountService, AccountService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
