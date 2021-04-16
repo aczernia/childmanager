@@ -10,7 +10,7 @@ import { StudentService } from 'src/app/services/student.service';
 })
 export class ApprenticeListComponent implements OnInit {
   items: StudentOutputModel[] = [];
-  displayedColumns = ['name', 'lastName', 'birthDate', 'pesel', 'class']
+  displayedColumns = ['name', 'lastName', 'birthDate', 'pesel', 'class', 'actions']
   constructor(private router: Router, private studentService: StudentService) { }
 
   ngOnInit(): void {
@@ -21,6 +21,14 @@ export class ApprenticeListComponent implements OnInit {
 
   redirectToAddForm() {
     this.router.navigateByUrl('/admin/apprentice/create');
+  }
+
+  deleteApprentice(id: number){
+    this.studentService.delete(id).subscribe(() => {
+      this.studentService.getAll().subscribe((items) => {
+        this.items = items;
+      })
+    })
   }
 
 }

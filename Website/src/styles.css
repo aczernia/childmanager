@@ -22,9 +22,15 @@ body {
     width: 50%; }
 
 .submit-button {
-  width: 120px;
+  width: 240px;
+  margin-top: 8px;
   background-color: #00c800;
   color: white; }
 
 .table {
   width: 100%; }
+
+  .delete-button {
+    background-color: #c80000;
+    color: white;
+  }
