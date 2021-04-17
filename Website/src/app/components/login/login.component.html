@@ -6,11 +6,6 @@
         <mat-form-field>                
             <input matInput placeholder="Hasło" formControlName="password" />
         </mat-form-field>
-        <div class="login-button-container">
-            <button mat-button class="submit-button" (click)="logAsUser()">Zaloguj jako nauczyciel</button>
-        </div>
-        <div class="login-button-container">
-            <button mat-button class="submit-button" (click)="logAsAdmin()">Zaloguj jako administrator</button>
-        </div>
+        <button mat-button class="submit-button" (click)="save()">Zaloguj</button>
     </form>
 </div>

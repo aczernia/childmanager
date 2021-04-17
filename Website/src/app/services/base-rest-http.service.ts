@@ -29,13 +29,13 @@ export abstract class BaseRestHttpService<TInput, TOutput> extends BaseHttpServi
       });
   }
 
-  public update(id: number, inputModel: TInput): Observable<Response> {
+  public update(id: string, inputModel: TInput): Observable<Response> {
     this.appendAuthorizationToRequest();
     return this.httpClient
       .put<Response>(`${this.getEndpointUrl()}/${id}`, inputModel, this.httpOptions);
   }
 
-  public delete(id: number): Observable<Response> {
+  public delete(id: string): Observable<Response> {
     this.appendAuthorizationToRequest();
     return this.httpClient
       .delete<Response>(`${this.getEndpointUrl()}/${id}`, this.httpOptions);
@@ -51,7 +51,7 @@ export abstract class BaseRestHttpService<TInput, TOutput> extends BaseHttpServi
       .get<TOutput[]>(this.getEndpointUrl(), this.httpOptions);
   }
 
-  public getById(id: number): Observable<TOutput> {
+  public getById(id: string): Observable<TOutput> {
     return this.httpClient
       .get<TOutput>(`${this.getEndpointUrl()}/${id}`, this.httpOptions);
   }

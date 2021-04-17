@@ -18,12 +18,8 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  logAsUser() {
-    this.router.navigateByUrl('/absence');
-  }
-
-  logAsAdmin() {
-    this.router.navigateByUrl('/admin/apprentice/list');
+  save() {
+    this.router.navigateByUrl('/admin/class/list');
   }
 
 }
