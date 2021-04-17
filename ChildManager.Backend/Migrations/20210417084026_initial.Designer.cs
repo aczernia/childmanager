@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChildManager.Migrations
 {
     [DbContext(typeof(ChildManagerDbContext))]
-    [Migration("20210409233749_ChangeNames")]
-    partial class ChangeNames
+    [Migration("20210417084026_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,6 +56,42 @@ namespace ChildManager.Migrations
                     b.ToTable("Journals");
                 });
 
+            modelBuilder.Entity("ChildManager.Entities.LessonPlan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ClassId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateFrom")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateTo")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DayOfWeek")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SubjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClassId");
+
+                    b.HasIndex("SubjectId");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("LessonPlans");
+                });
+
             modelBuilder.Entity("ChildManager.Entities.Student", b =>
                 {
                     b.Property<int>("Id")
@@ -66,7 +102,7 @@ namespace ChildManager.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ClassId")
+                    b.Property<int>("ClassId")
                         .HasColumnType("int");
 
                     b.Property<int?>("JournalId")
@@ -93,6 +129,27 @@ namespace ChildManager.Migrations
                     b.ToTable("Students");
                 });
 
+            modelBuilder.Entity("ChildManager.Entities.Subject", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("Subjects");
+                });
+
             modelBuilder.Entity("ChildManager.Entities.Teacher", b =>
                 {
                     b.Property<int>("Id")
@@ -100,7 +157,7 @@ namespace ChildManager.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ClassId")
+                    b.Property<int>("ClassId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -128,11 +185,40 @@ namespace ChildManager.Migrations
                     b.ToTable("Teachers");
                 });
 
+            modelBuilder.Entity("ChildManager.Entities.LessonPlan", b =>
+                {
+                    b.HasOne("ChildManager.Entities.Class", "Class")
+                        .WithMany()
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ChildManager.Entities.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ChildManager.Entities.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Class");
+
+                    b.Navigation("Subject");
+
+                    b.Navigation("Teacher");
+                });
+
             modelBuilder.Entity("ChildManager.Entities.Student", b =>
                 {
                     b.HasOne("ChildManager.Entities.Class", "Class")
                         .WithMany("Students")
-                        .HasForeignKey("ClassId");
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ChildManager.Entities.Journal", "Journal")
                         .WithMany("Students")
@@ -143,19 +229,30 @@ namespace ChildManager.Migrations
                     b.Navigation("Journal");
                 });
 
+            modelBuilder.Entity("ChildManager.Entities.Subject", b =>
+                {
+                    b.HasOne("ChildManager.Entities.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Teacher");
+                });
+
             modelBuilder.Entity("ChildManager.Entities.Teacher", b =>
                 {
                     b.HasOne("ChildManager.Entities.Class", "Class")
                         .WithMany("Teachers")
-                        .HasForeignKey("ClassId");
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("ChildManager.Entities.Journal", "Journal")
+                    b.HasOne("ChildManager.Entities.Journal", null)
                         .WithMany("Teachers")
                         .HasForeignKey("JournalId");
 
                     b.Navigation("Class");
-
-                    b.Navigation("Journal");
                 });
 
             modelBuilder.Entity("ChildManager.Entities.Class", b =>

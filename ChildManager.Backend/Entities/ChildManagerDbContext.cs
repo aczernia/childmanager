@@ -11,6 +11,8 @@ namespace ChildManager.Entities
         public DbSet<Class> Classes { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Journal> Journals { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<LessonPlan> LessonPlans { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,6 +33,9 @@ namespace ChildManager.Entities
                 .IsRequired();
             modelBuilder.Entity<Journal>()
                 .Property(x => x.Subject)
+                .IsRequired();
+            modelBuilder.Entity<Subject>()
+                .Property(a => a.Name)
                 .IsRequired();
 
         }

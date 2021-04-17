@@ -39,10 +39,11 @@ namespace ChildManager
             });
             services.AddControllers();
             services.AddDbContext<ChildManagerDbContext>();
-            services.AddAutoMapper(this.GetType().Assembly);
+            services.AddAutoMapper(GetType().Assembly);
             services.AddTransient<IStudentService, StudentService>();
             services.AddTransient<ITeacherService, TeacherService>();
             services.AddTransient<IClassService, ClassService>();
+            services.AddTransient<ISubjectService, SubjectService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
