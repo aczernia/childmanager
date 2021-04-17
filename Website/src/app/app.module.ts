@@ -9,7 +9,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminModule } from './admin/admin.module';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
-import { SelectParamComponent } from './scheduler/select-param/select-param.component';
 import { SchedulerViewComponent } from './scheduler-view/scheduler-view/scheduler-view.component';
 import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -52,6 +51,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
+import { LessonPlanService } from './services/lesson-plan.service';
+import { SubjectService } from './services/subject.service';
 const routes: Routes = [
   {
     path: 'admin',
@@ -66,10 +67,6 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'select',
-    component: SelectParamComponent
-  },
-  {
     path: 'view',
     component: SchedulerViewComponent
   },
@@ -82,9 +79,6 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    SelectParamComponent,
-
-
   ],
   imports: [
 
@@ -133,7 +127,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
 
   ],
-  providers: [ClassService, TeacherService, StudentService, DatePipe],
+  providers: [ClassService, TeacherService, StudentService, DatePipe, LessonPlanService, SubjectService],
   bootstrap: [AppComponent],
 
 })

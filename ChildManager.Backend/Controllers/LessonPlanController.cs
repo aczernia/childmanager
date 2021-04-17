@@ -21,7 +21,7 @@ namespace ChildManager.Controllers
             return Ok();
         }
 
-        [HttpGet("classId:int")]
+        [HttpGet("{classId:int}")]
         public IActionResult GetForClass(int classId)
         {
             return Ok(_lessonPlanService.GetLessonPlanForClass(classId));
