@@ -10,6 +10,9 @@ export abstract class BaseHttpService {
   protected teacherUrl: string = environment.apiUrl + '/teacher';
   protected classUrl: string = environment.apiUrl + '/class';
   protected studentUrl: string = environment.apiUrl + '/student';
+  protected subjectUrl: string = environment.apiUrl + '/subject';
+  protected lessonPlanUrl: string = environment.apiUrl + '/lesson-plan';
+
   constructor() { }
   protected httpOptions = {
     headers: new HttpHeaders({

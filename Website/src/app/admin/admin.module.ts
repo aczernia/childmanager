@@ -12,6 +12,12 @@ import { TeacherService } from '../services/teacher.service';
 import { StudentService } from '../services/student.service';
 import { ClassService } from '../services/class.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SchedulerComponent } from '../admin/components/scheduler/scheduler.component';
+import { SubjectListComponent } from './components/subject/subject-list/subject-list.component';
+import { SubjectFormComponent } from './components/subject/subject-form/subject-form.component';
+import { SubjectService } from '../services/subject.service';
+import { TeacherListComponent } from './components/teacher/teacher-list/teacher-list.component';
+import { TeacherFormComponent } from './components/teacher/teacher-form/teacher-form.component';
 const routes: Routes = [
   {
     path: 'apprentice',
@@ -26,17 +32,35 @@ const routes: Routes = [
       { path: 'create', component: ClassFormComponent},
       { path: 'list', component: ClassListComponent}
     ]
+  },
+  {
+    path: 'subject',
+    children: [
+      { path: 'create', component: SubjectFormComponent},
+      { path: 'list', component: SubjectListComponent}
+    ]
+  },
+  {
+    path: 'teacher',
+    children: [
+      { path: 'create', component: TeacherFormComponent},
+      { path: 'list', component: TeacherListComponent}
+    ]
+  },
+  {
+    path: 'scheduler',
+    component: SchedulerComponent
   }
 ]
 @NgModule({
-  declarations: [ApprenticeFormComponent, ApprenticeListComponent, AdminComponent, ClassFormComponent, ClassListComponent],
+  declarations: [ApprenticeFormComponent, ApprenticeListComponent, AdminComponent, ClassFormComponent, ClassListComponent, SchedulerComponent, SubjectListComponent, SubjectFormComponent, TeacherListComponent, TeacherFormComponent],
   imports: [
     HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    MaterialModuleModule
+    MaterialModuleModule,
   ],
-  providers: [ClassService, StudentService, TeacherService]
+  providers: [ClassService, StudentService, TeacherService, SubjectService]
 })
 export class AdminModule { }
