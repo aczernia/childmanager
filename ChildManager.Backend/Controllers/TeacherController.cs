@@ -13,11 +13,11 @@ using TeacherInputModel = ChildManager.Models.TeacherInputModel;
 namespace ChildManager.Controllers
 {
     [Route("api/teacher")]
-    public class TeacherController : ControllerBase
+    public class TeacherControlller : ControllerBase
     {
         private readonly ITeacherService _teacherService;
 
-        public TeacherController(ITeacherService teacherService)
+        public TeacherControlller(ITeacherService teacherService)
         {
             _teacherService = teacherService;
         }
