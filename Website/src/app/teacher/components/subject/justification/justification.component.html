@@ -1,0 +1,9 @@
+<div class="inside-container" *ngIf="student">
+    <h2>
+        Usprawiedliwienia studenta {{student.name}} {{student.lastName}}
+    </h2>
+    <app-absence-list
+      [absences]="student.absences"
+      (justify)="justify($event)">
+    </app-absence-list>
+</div>

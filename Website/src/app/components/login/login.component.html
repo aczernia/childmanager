@@ -1,0 +1,11 @@
+<div class="inside-container">
+    <form [formGroup]="loginForm">
+        <mat-form-field>                
+            <input matInput placeholder="Nazwa użytkownika" formControlName="username" />
+        </mat-form-field>
+        <mat-form-field>                
+            <input matInput placeholder="Hasło" formControlName="password" />
+        </mat-form-field>
+        <button mat-button class="submit-button" (click)="save()">Zaloguj</button>
+    </form>
+</div>

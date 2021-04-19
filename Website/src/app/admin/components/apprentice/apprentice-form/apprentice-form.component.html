@@ -1,0 +1,28 @@
+<div class="inside-container" *ngIf="classes">
+    <h2>Tworzenie ucznia</h2>
+    <form [formGroup]="apprenticeForm">
+        <mat-form-field>                
+            <input matInput placeholder="Imię" formControlName="name" />
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Nazwisko" formControlName="lastName" />
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Data urodzenia" [matDatepicker]="picker" formControlName="dateOfBirth" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Klasa</mat-label>
+            <mat-select formControlName="class">
+                <mat-option *ngFor="let class of classes" [value]="class.id">
+                {{class.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Pesel" formControlName="pesel"  />
+        </mat-form-field>
+        <button mat-button class="submit-button" (click)="save()">Zapisz</button>
+    </form>
+</div>

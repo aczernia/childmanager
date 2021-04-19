@@ -1,0 +1,15 @@
+<div class="inside-container" *ngIf="classes">
+    <h2>
+        Obecność
+    </h2>
+    <mat-form-field>
+        <mat-label>Klasa</mat-label>
+        <mat-select
+          (selectionChange)="handleChangeClass($event)" [value]="currentClassId">
+            <mat-option *ngFor="let class of classes" [value]="class.id">
+              {{class.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <app-student-list [students]="students"></app-student-list>
+</div>

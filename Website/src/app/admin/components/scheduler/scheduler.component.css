@@ -1,0 +1,19 @@
+.scheduler-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.scheduler-day {
+    padding: 8px;
+    flex:1;
+}
+
+.scheduler-item {
+    background-color: lightblue;
+    padding: 4px;
+}
+.scheduler-item span {
+    display: block;
+    font-weight: bold;
+}

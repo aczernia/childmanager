@@ -1,0 +1,31 @@
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: rgb(200, 200, 200); }
+
+.view-container {
+    height: 100%;
+    margin: 32px;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034);
+    background-color: white;
+    padding: 12px;
+}
+
+.inside-container {
+    padding: 2%;
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    mat-form-field {
+        width: 50%;
+    }
+}
+
+.submit-button {
+    width: 120px;
+    background-color: rgb(0, 200, 0);
+    color: white;
+}
+
+.table {
+    width: 100%;
+}

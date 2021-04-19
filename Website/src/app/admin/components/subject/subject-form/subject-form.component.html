@@ -1,0 +1,17 @@
+<div class="inside-container" *ngIf="teachers">
+    <h2>Tworzenie przedmiotu</h2>
+    <form [formGroup]="subjectForm">
+        <mat-form-field>                
+            <input matInput placeholder="Nazwa przedmiotu" formControlName="name" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Nauczyciel</mat-label>
+            <mat-select formControlName="teacher">
+                <mat-option *ngFor="let teacher of teachers" [value]="teacher.id">
+                {{teacher.name}} {{teacher.lastName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-button class="submit-button" (click)="save()">Zapisz</button>
+    </form>
+</div>
