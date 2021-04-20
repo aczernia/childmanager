@@ -13,7 +13,7 @@ import { StudentService } from 'src/app/services/student.service';
 export class ApprenticeFormComponent implements OnInit {
   apprenticeForm: FormGroup;
   classes: ClassOutputModel[];
-  constructor(private formBuilder: FormBuilder, private router: Router, private studentService: StudentService, private classService: ClassService) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private studentService: StudentService, private classService: ClassService) {
     this.apprenticeForm = this.formBuilder.group({
       name: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -41,6 +41,9 @@ export class ApprenticeFormComponent implements OnInit {
         this.router.navigateByUrl('/admin/apprentice/list');
       })
     }
+  }
+  redirectToMenu(){
+    this.router.navigateByUrl('/admin/menu');
   }
 
 }

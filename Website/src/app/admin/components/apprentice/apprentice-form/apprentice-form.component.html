@@ -1,7 +1,9 @@
 <div class="inside-container" *ngIf="classes">
-    <h2>Tworzenie ucznia</h2>
+  <button mat-icon-button (click)="redirectToMenu()" style="background-color: #00c800; color: white; font-size: 22px; font-weight: 500; font-family: Roboto, Helvetica Neue, sans-serif; margin-bottom: 30px;"><mat-icon>home</mat-icon></button>
+  <br>
+  <h2>Tworzenie ucznia</h2>
     <form [formGroup]="apprenticeForm">
-        <mat-form-field>                
+        <mat-form-field>
             <input matInput placeholder="Imię" formControlName="name" />
         </mat-form-field>
         <mat-form-field>

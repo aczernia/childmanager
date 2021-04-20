@@ -1,7 +1,8 @@
 <div class="inside-container" *ngIf="classes && teachers && subjects">
+  <button mat-icon-button (click)="redirectToMenu()" style="background-color: #00c800; color: white; font-size: 22px; font-weight: 500; font-family: Roboto, Helvetica Neue, sans-serif; margin-bottom: 30px;"><mat-icon>home</mat-icon></button>
     <mat-form-field>
         <mat-label>Klasa</mat-label>
-        <mat-select 
+        <mat-select
           (selectionChange)="handleChangeClass($event)" [value]="currentClassId">
             <mat-option *ngFor="let class of classes" [value]="class.id">
               {{class.name}}
@@ -43,7 +44,7 @@
                 <ngx-material-timepicker #begin></ngx-material-timepicker>
                 <input matInput placeholder="Godzina rozpoczęcia" formControlName="lessonStart" [ngxTimepicker]="begin" />
             </mat-form-field>
-            <mat-form-field>                
+            <mat-form-field>
                 <ngx-material-timepicker #end></ngx-material-timepicker>
                 <input matInput placeholder="Godzina zakończenia" formControlName="lessonStop" [ngxTimepicker]="end" />
             </mat-form-field>

@@ -9,6 +9,7 @@ import { SubjectService } from 'src/app/services/subject.service';
 import { SubjectOutputModel } from 'src/app/models/subject.output-model';
 import { TeacherOutputModel } from 'src/app/models/teacher.output-model';
 import { TeacherService } from 'src/app/services/teacher.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-scheduler',
@@ -17,8 +18,8 @@ import { TeacherService } from 'src/app/services/teacher.service';
 })
 export class SchedulerComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private lessonPlanService: LessonPlanService, private classService: ClassService, 
-    private subjectService: SubjectService, private teacherService: TeacherService) { }
+  constructor(private formBuilder: FormBuilder, private lessonPlanService: LessonPlanService, private classService: ClassService,
+    private subjectService: SubjectService, private teacherService: TeacherService, private router: Router) { }
   lessonForm: FormGroup;
   classes: ClassOutputModel[];
   subjects: SubjectOutputModel[] = null;
@@ -74,5 +75,8 @@ export class SchedulerComponent implements OnInit {
       this.lessonPlanItems = items;
     })
     })
+  }
+  redirectToMenu(){
+    this.router.navigateByUrl('/admin/menu');
   }
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApprenticeFormComponent } from './components/apprentice/apprentice-form/apprentice-form.component';
+import { MenuComponent } from './components/menu/menu/menu.component';
 import { ApprenticeListComponent } from './components/apprentice/apprentice-list/apprentice-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -18,6 +19,7 @@ import { SubjectFormComponent } from './components/subject/subject-form/subject-
 import { SubjectService } from '../services/subject.service';
 import { TeacherListComponent } from './components/teacher/teacher-list/teacher-list.component';
 import { TeacherFormComponent } from './components/teacher/teacher-form/teacher-form.component';
+import { MatIconModule } from '@angular/material/icon';
 const routes: Routes = [
   {
     path: 'apprentice',
@@ -50,17 +52,22 @@ const routes: Routes = [
   {
     path: 'scheduler',
     component: SchedulerComponent
+  },
+  {
+    path: 'menu',
+    component: MenuComponent
   }
 ]
 @NgModule({
-  declarations: [ApprenticeFormComponent, ApprenticeListComponent, AdminComponent, ClassFormComponent, ClassListComponent, SchedulerComponent, SubjectListComponent, SubjectFormComponent, TeacherListComponent, TeacherFormComponent],
+  declarations: [ApprenticeFormComponent, ApprenticeListComponent, AdminComponent, ClassFormComponent, ClassListComponent, SchedulerComponent, SubjectListComponent, SubjectFormComponent, TeacherListComponent, TeacherFormComponent, MenuComponent],
   imports: [
     HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     MaterialModuleModule,
+    MatIconModule
   ],
-  providers: [ClassService, StudentService, TeacherService, SubjectService]
+  providers: [ClassService, StudentService, TeacherService, SubjectService ]
 })
 export class AdminModule { }
