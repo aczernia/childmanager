@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChildManager.Migrations
 {
     [DbContext(typeof(ChildManagerDbContext))]
-    [Migration("20210415225502_UserAndRoleAdd")]
-    partial class UserAndRoleAdd
+    [Migration("20210420191838_restaurantUserIdAdd")]
+    partial class restaurantUserIdAdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -82,7 +82,7 @@ namespace ChildManager.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ClassId")
+                    b.Property<int?>("ClassId")
                         .HasColumnType("int");
 
                     b.Property<int?>("JournalId")
@@ -181,9 +181,7 @@ namespace ChildManager.Migrations
                 {
                     b.HasOne("ChildManager.Entities.Class", "Class")
                         .WithMany("Students")
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClassId");
 
                     b.HasOne("ChildManager.Entities.Journal", "Journal")
                         .WithMany("Students")
