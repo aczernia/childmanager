@@ -20,8 +20,8 @@ export class AbsenceComponent implements OnInit {
       this.classes = items;
     })
   }
-  
-  handleChangeClass(event: any){
+
+  handleChangeClass(event: any) {
     this.currentClassId = event.value;
     this.studentService.getStudentsAssignedToClass(this.currentClassId).subscribe((items) => {
       this.students = items;
