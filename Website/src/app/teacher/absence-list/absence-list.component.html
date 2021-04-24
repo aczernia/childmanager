@@ -1,7 +1,7 @@
 <table mat-table [dataSource]="absences" class="table">
     <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef> Data </th>
-        <td mat-cell *matCellDef="let element"> {{element.date | date: 'short'}} </td>
+        <td mat-cell *matCellDef="let element"> {{formatDateTime(element.date)}} </td>
     </ng-container>
 
     <ng-container matColumnDef="justified">
@@ -12,7 +12,7 @@
     <ng-container matColumnDef="controls">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-          <button mat-button (click)="justifyAbsence(element.id)">
+          <button mat-button (click)="justifyAbsence(element.id)" *ngIf="!element.justified">
             Usprawiedliw
           </button>
         </td>

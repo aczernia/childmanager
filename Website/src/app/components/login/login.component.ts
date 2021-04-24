@@ -26,7 +26,9 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.get('password').value
     }).subscribe((response: LoginOutputModel) => {
       localStorage.setItem('teacherId', response.teacherId.toString());
-      localStorage.setItem('classId', response.educatorClassId.toString());
+      if (response.educatorClassId){
+        localStorage.setItem('classId', response.educatorClassId.toString());
+      }
       if (response.isAdmin){
         this.router.navigateByUrl('/admin/menu');
       }

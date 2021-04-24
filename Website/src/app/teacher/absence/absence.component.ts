@@ -46,11 +46,7 @@ export class AbsenceComponent implements OnInit {
         this.router.navigateByUrl('/teacher/lesson-list');
       }
     });
-   
-  }
-
-  get absenceFormArray(): FormArray {
-    return this.lessonForm.controls.absence as FormArray;
+  
   }
 
   handleChangeClass(event: any) {
@@ -78,7 +74,7 @@ export class AbsenceComponent implements OnInit {
       topic: this.lessonForm.get('topic').value,
       wasPresentsStudentsIds: this.checkedStudentsIds
     }).subscribe(() => {
-      this.router.navigateByUrl('/teacher/student-list');
+      this.router.navigateByUrl(`/teacher/lesson-list/${this.currentLessonPlan.class.id}`);
     })
   }
 }

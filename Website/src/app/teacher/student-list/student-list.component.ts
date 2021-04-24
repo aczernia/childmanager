@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { StudentAbsenceOutputModel, StudentAbsencesOutputModel } from 'src/app/models/student.output-model';
 import { StudentService } from 'src/app/services/student.service';
 
@@ -34,5 +35,9 @@ export class StudentListComponent implements OnInit {
 
   redirectToAbsenceList(studentId: number) {
     this.router.navigateByUrl(`/teacher/absence-list/${studentId}`);
+  }
+
+  formatDateTime(date: Date): string{
+    return moment(date).local().format('D-MM-YYYY HH:mm').toString();
   }
 }
