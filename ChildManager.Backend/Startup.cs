@@ -70,6 +70,7 @@ namespace ChildManager
             services.AddTransient<ISubjectService, SubjectService>();
             services.AddTransient<ILessonPlanService, LessonPlanService>();
             services.AddTransient<ILessonService, LessonService>();
+            services.AddTransient<IAbsenceService, AbsenceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

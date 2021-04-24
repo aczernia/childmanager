@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ChildManager.Entities
 {
@@ -13,5 +14,7 @@ namespace ChildManager.Entities
 
         public Class Class { get; set; }
         public Journal Journal { get; set; }
+
+        public virtual ICollection<Absence> Absences { get; set; }
     }
 }

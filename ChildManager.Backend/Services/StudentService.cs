@@ -17,7 +17,7 @@ namespace ChildManager.Services
         bool Delete(int id);
         bool Update(int id, StudentInputModel dto);
 
-        List<StudentOutputModel> GetStudentsFromClass(int classId);
+        List<StudentAbsencesOutputModel> GetStudentsFromClass(int classId);
     }
 
     public class StudentService : IStudentService
@@ -114,19 +114,27 @@ namespace ChildManager.Services
                 return true;
         }
 
-        public List<StudentOutputModel> GetStudentsFromClass(int classId)
+        public List<StudentAbsencesOutputModel> GetStudentsFromClass(int classId)
         {
             var students = _dbContext.Students
                 .Where(a => a.ClassId == classId)
                 .Include(a => a.Class)
-                .Select(a => new StudentOutputModel()
+                .Include(a => a.Absences)
+                .ThenInclude(a => a.Lesson)
+                .Select(a => new StudentAbsencesOutputModel()
                 {
                     BirthDate = a.BirthDate,
                     Id = a.Id,
                     LastName = a.LastName,
                     Class = a.Class.ClassName,
                     Name = a.Name,
-                    Pesel = a.Pesel
+                    Pesel = a.Pesel,
+                    Absences = a.Absences.Select(b => new AbsenceOutputModel()
+                    {
+                        Justified = b.Justified ?? false,
+                        Date = b.Lesson.BeginDate,
+                        Id = b.Id
+                    }).ToList()
                 }).ToList();
             return students;
         }

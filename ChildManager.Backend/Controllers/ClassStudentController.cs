@@ -16,7 +16,7 @@ namespace ChildManager.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<StudentOutputModel>> Get(int id)
+        public ActionResult<IEnumerable<StudentAbsencesOutputModel>> Get(int id)
         {
 
             var studentDto = _studentService.GetStudentsFromClass(id);
