@@ -22,5 +22,8 @@ export class ApprenticeListComponent implements OnInit {
   redirectToAddForm() {
     this.router.navigateByUrl('/admin/apprentice/create');
   }
+  redirectToMenu(){
+    this.router.navigateByUrl('/admin/menu');
+  }
 
 }

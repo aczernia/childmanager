@@ -53,6 +53,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { LessonPlanService } from './services/lesson-plan.service';
 import { SubjectService } from './services/subject.service';
+
+
 const routes: Routes = [
   {
     path: 'admin',
@@ -70,6 +72,7 @@ const routes: Routes = [
     path: 'view',
     component: SchedulerViewComponent
   },
+
   {
     path: '**',
     redirectTo: 'login'

@@ -22,5 +22,8 @@ export class ClassListComponent implements OnInit {
   redirectToAddForm() {
     this.router.navigateByUrl('/admin/class/create');
   }
+  redirectToMenu(){
+    this.router.navigateByUrl('/admin/menu');
+  }
 
 }

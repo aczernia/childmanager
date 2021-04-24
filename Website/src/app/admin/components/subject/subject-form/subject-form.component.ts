@@ -35,5 +35,7 @@ export class SubjectFormComponent implements OnInit {
       })
     }
   }
-
+  redirectToMenu(){
+    this.router.navigateByUrl('/admin/menu');
+  }
 }

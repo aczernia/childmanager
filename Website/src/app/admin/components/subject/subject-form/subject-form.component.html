@@ -1,7 +1,8 @@
 <div class="inside-container" *ngIf="teachers">
+  <button mat-icon-button (click)="redirectToMenu()" style="background-color: #00c800; color: white; font-size: 22px; font-weight: 500; font-family: Roboto, Helvetica Neue, sans-serif; margin-bottom: 30px;"><mat-icon>home</mat-icon></button>
     <h2>Tworzenie przedmiotu</h2>
     <form [formGroup]="subjectForm">
-        <mat-form-field>                
+        <mat-form-field>
             <input matInput placeholder="Nazwa przedmiotu" formControlName="name" />
         </mat-form-field>
         <mat-form-field>

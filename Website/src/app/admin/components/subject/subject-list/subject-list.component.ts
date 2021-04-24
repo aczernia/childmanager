@@ -22,4 +22,7 @@ export class SubjectListComponent implements OnInit {
   redirectToAddForm() {
     this.router.navigateByUrl('/admin/subject/create');
   }
+  redirectToMenu(){
+    this.router.navigateByUrl('/admin/menu');
+  }
 }
