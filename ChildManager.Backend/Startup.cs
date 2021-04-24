@@ -6,12 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ChildManager.Entities;
 using ChildManager.Middleware;
-using ChildManager.Models;
-using ChildManager.Models.Validators;
 using ChildManager.Services;
-using FluentValidation;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
 
@@ -69,19 +65,15 @@ namespace ChildManager
             services.AddTransient<IStudentService, StudentService>();
             services.AddTransient<ITeacherService, TeacherService>();
             services.AddTransient<IClassService, ClassService>();
-            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
-            services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
             services.AddScoped<ErrorHandlingMiddleware>();
-            services.AddScoped<ChildSeeder>();
-            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IAuthorizationService, AuthorizationService>();
             services.AddTransient<ISubjectService, SubjectService>();
             services.AddTransient<ILessonPlanService, LessonPlanService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ChildSeeder seeder)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            seeder.Seed();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

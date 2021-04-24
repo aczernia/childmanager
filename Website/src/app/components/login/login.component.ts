@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginOutputModel } from 'src/app/models/login.output-model';
+import { AuthorizationService } from 'src/app/services/authorization.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor(private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private authorizationService: AuthorizationService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -19,7 +21,14 @@ export class LoginComponent implements OnInit {
   }
 
   save() {
-    this.router.navigateByUrl('/admin/menu');
+    this.authorizationService.login({
+      email: this.loginForm.get('username').value,
+      password: this.loginForm.get('password').value
+    }).subscribe((response: LoginOutputModel) => {
+      if (response.isAdmin){
+        this.router.navigateByUrl('/admin/menu');
+      }
+    })
   }
 
 }

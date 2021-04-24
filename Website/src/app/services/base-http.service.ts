@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export abstract class BaseHttpService {
+  protected authorizationUrl: string = environment.apiUrl + '/authorization';
   protected teacherUrl: string = environment.apiUrl + '/teacher';
   protected classUrl: string = environment.apiUrl + '/class';
   protected studentUrl: string = environment.apiUrl + '/student';

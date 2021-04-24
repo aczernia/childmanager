@@ -54,7 +54,6 @@ namespace ChildManager.Migrations
                     b.ToTable("Journals");
                 });
 
-            modelBuilder.Entity("ChildManager.Entities.Role", b =>
             modelBuilder.Entity("ChildManager.Entities.LessonPlan", b =>
                 {
                     b.Property<int>("Id")
@@ -62,19 +61,6 @@ namespace ChildManager.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-                }
-            modelBuilder.Entity("ChildManager.Entities.Role", b =>
-                    b.ToTable("Roles");
-                    {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
                     b.Property<int>("ClassId")
                         .HasColumnType("int");
 
@@ -114,7 +100,7 @@ namespace ChildManager.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ClassId")
+                    b.Property<int?>("ClassId")
                         .HasColumnType("int");
 
                     b.Property<int?>("JournalId")
@@ -169,11 +155,14 @@ namespace ChildManager.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClassId")
+                    b.Property<int?>("ClassId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("JournalId")
                         .HasColumnType("int");
@@ -183,6 +172,9 @@ namespace ChildManager.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
@@ -197,37 +189,6 @@ namespace ChildManager.Migrations
                     b.ToTable("Teachers");
                 });
 
-            modelBuilder.Entity("ChildManager.Entities.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("Users");
             modelBuilder.Entity("ChildManager.Entities.LessonPlan", b =>
                 {
                     b.HasOne("ChildManager.Entities.Class", "Class")
@@ -245,7 +206,7 @@ namespace ChildManager.Migrations
                     b.HasOne("ChildManager.Entities.Teacher", "Teacher")
                         .WithMany()
                         .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Class");
@@ -259,9 +220,7 @@ namespace ChildManager.Migrations
                 {
                     b.HasOne("ChildManager.Entities.Class", "Class")
                         .WithMany("Students")
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClassId");
 
                     b.HasOne("ChildManager.Entities.Journal", "Journal")
                         .WithMany("Students")
@@ -287,26 +246,13 @@ namespace ChildManager.Migrations
                 {
                     b.HasOne("ChildManager.Entities.Class", "Class")
                         .WithMany("Teachers")
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClassId");
 
                     b.HasOne("ChildManager.Entities.Journal", null)
                         .WithMany("Teachers")
                         .HasForeignKey("JournalId");
 
                     b.Navigation("Class");
-                });
-
-            modelBuilder.Entity("ChildManager.Entities.User", b =>
-                {
-                    b.HasOne("ChildManager.Entities.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("ChildManager.Entities.Class", b =>

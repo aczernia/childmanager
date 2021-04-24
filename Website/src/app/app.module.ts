@@ -53,6 +53,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { LessonPlanService } from './services/lesson-plan.service';
 import { SubjectService } from './services/subject.service';
+import { AuthorizationService } from './services/authorization.service';
 
 
 const routes: Routes = [
@@ -130,7 +131,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
 
   ],
-  providers: [ClassService, TeacherService, StudentService, DatePipe, LessonPlanService, SubjectService],
+  providers: [ClassService, TeacherService, StudentService, DatePipe, LessonPlanService, SubjectService, AuthorizationService],
   bootstrap: [AppComponent],
 
 })

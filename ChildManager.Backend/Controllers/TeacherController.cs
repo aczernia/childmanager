@@ -53,7 +53,7 @@ namespace ChildManager.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreatTeacher([FromBody] TeacherInputModel dto)
+        public ActionResult CreateTeacher([FromBody] TeacherInputModel dto)
         {
             if (!ModelState.IsValid)
             {
