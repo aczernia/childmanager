@@ -3,4 +3,5 @@ export class TeacherInputModel {
     lastName: string;
     phoneNumber: string;
     email: string;
+    password: string;
 }

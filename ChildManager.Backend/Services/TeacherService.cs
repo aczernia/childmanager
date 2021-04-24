@@ -99,6 +99,7 @@ namespace ChildManager.Services
                 LastName = dto.LastName,
                 Email = dto.Email,
                 Name = dto.Name,
+                Password = dto.Password,
             };
 
             _dbContext.Teachers.Add(teacher);

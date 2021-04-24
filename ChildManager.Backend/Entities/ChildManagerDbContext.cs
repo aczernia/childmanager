@@ -6,15 +6,13 @@ namespace ChildManager.Entities
     public class ChildManagerDbContext : DbContext
     {
         private string _connectionString =
-            "Server=(localdb)\\MSSQLLocalDB ;Database=ChildManagerDb;Trusted_Connection=True;Integrated Security=true";
+            "Server=.;Database=ChildManagerDb;Trusted_Connection=True;Integrated Security=true";
 
 
         public DbSet<Student> Students { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Journal> Journals { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<User> Users { get; set; }
 
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<LessonPlan> LessonPlans { get; set; }
@@ -44,15 +42,10 @@ namespace ChildManager.Entities
                 .Property(a => a.Name)
                 .IsRequired();
 
-            modelBuilder.Entity<User>()
-                .Property(X => X.Email)
-                .IsRequired();
-
-            modelBuilder.Entity<Role>()
-                .Property(x => x.Name).IsRequired();
-
-
-
+            modelBuilder.Entity<LessonPlan>()
+                .HasOne(a => a.Teacher)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
