@@ -16,6 +16,8 @@ namespace ChildManager.Entities
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<LessonPlan> LessonPlans { get; set; }
 
         
 
@@ -37,6 +39,9 @@ namespace ChildManager.Entities
                 .IsRequired();
             modelBuilder.Entity<Journal>()
                 .Property(x => x.Subject)
+                .IsRequired();
+            modelBuilder.Entity<Subject>()
+                .Property(a => a.Name)
                 .IsRequired();
 
             modelBuilder.Entity<User>()

@@ -65,7 +65,7 @@ namespace ChildManager
             
             services.AddControllers().AddFluentValidation();
             services.AddDbContext<ChildManagerDbContext>();
-            services.AddAutoMapper(this.GetType().Assembly);
+            services.AddAutoMapper(GetType().Assembly);
             services.AddTransient<IStudentService, StudentService>();
             services.AddTransient<ITeacherService, TeacherService>();
             services.AddTransient<IClassService, ClassService>();
@@ -74,6 +74,8 @@ namespace ChildManager
             services.AddScoped<ErrorHandlingMiddleware>();
             services.AddScoped<ChildSeeder>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddTransient<ISubjectService, SubjectService>();
+            services.AddTransient<ILessonPlanService, LessonPlanService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

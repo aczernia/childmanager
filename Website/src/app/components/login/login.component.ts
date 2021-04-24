@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   }
 
   save() {
-    this.router.navigateByUrl('/admin/class/list');
+    this.router.navigateByUrl('/admin/menu');
   }
 
 }

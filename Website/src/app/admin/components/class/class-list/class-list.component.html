@@ -1,4 +1,5 @@
 <div class="inside-container">
+  <button mat-icon-button (click)="redirectToMenu()" style="background-color: #00c800; color: white; font-size: 22px; font-weight: 500; font-family: Roboto, Helvetica Neue, sans-serif; margin-bottom: 30px;"><mat-icon>home</mat-icon></button>
     <h2>Lista klas</h2>
     <button mat-button (click)="redirectToAddForm()" class="submit-button">Dodaj klasę</button>
     <table mat-table [dataSource]="items" class="table">

@@ -1,0 +1,103 @@
+#menu
+{
+  display: inline-block;
+  min-width: 1000px;
+
+}
+
+.button-submit{
+  background-color: #00c800;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  color: #ffffff;
+  width: 150px;
+  text-align: center;
+}
+#title{
+  width: 300px;
+  height: 50px;
+  background-color: #00c800;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+#title1{
+  width: 300px;
+  height: 50px;
+  background-color: #00c800;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+#title2{
+  width: 300px;
+  height: 50px;
+  background-color: #00c800;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+#title3{
+  width: 300px;
+  height: 50px;
+  background-color: #00c800;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+#title4{
+  width: 300px;
+  height: 50px;
+  background-color: #00c800;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+#title5{
+  width: 300px;
+  height: 50px;
+  background-color: #00c800;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+#content{
+  width: 300px;
+  height: 50px;
+  border-top: 1px solid black;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 50px;
+}
+#square{
+  width:300px;
+  border: 1px solid black;
+  cursor: pointer;
+  float: left;
+  margin-right: 50px;
+  margin-bottom: 50px;
+}
+.class{
+  font-size: 34px;
+}
+

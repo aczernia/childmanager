@@ -1,4 +1,6 @@
 <div class="inside-container">
+
+ <button mat-icon-button (click)="redirectToMenu()" style="background-color: #00c800; color: white; font-size: 22px; font-weight: 500; font-family: Roboto, Helvetica Neue, sans-serif; margin-bottom: 30px;"><mat-icon>home</mat-icon></button>
     <h2>Lista uczniów</h2>
     <button mat-button (click)="redirectToAddForm()" class="submit-button">Dodaj ucznia</button>
     <table mat-table [dataSource]="items" class="table">
@@ -6,17 +8,14 @@
             <th mat-header-cell *matHeaderCellDef> Imię </th>
             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
-        
         <ng-container matColumnDef="lastName">
            <th mat-header-cell *matHeaderCellDef> Nazwisko </th>
            <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
         </ng-container>
-        
         <ng-container matColumnDef="birthDate">
             <th mat-header-cell *matHeaderCellDef> Data urodzenia </th>
             <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
           </ng-container>
-        
         <ng-container matColumnDef="pesel">
             <th mat-header-cell *matHeaderCellDef> Pesel </th>
             <td mat-cell *matCellDef="let element"> {{element.pesel}} </td>
