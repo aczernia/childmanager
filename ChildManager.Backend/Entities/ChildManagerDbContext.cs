@@ -6,18 +6,18 @@ namespace ChildManager.Entities
     public class ChildManagerDbContext : DbContext
     {
         private string _connectionString =
-            "Server=.;Database=ChildManagerDb;Trusted_Connection=True;Integrated Security=true";
+            "Server=.;Database=ChildManagerDb;Trusted_Connection=True;Integrated Security=true;MultipleActiveResultSets=true";
 
 
         public DbSet<Student> Students { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Journal> Journals { get; set; }
+        public DbSet<Lesson> Lessons { get; set; }
+        public DbSet<Absence> Absences { get; set; }
 
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<LessonPlan> LessonPlans { get; set; }
-
-        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -43,6 +43,11 @@ namespace ChildManager.Entities
                 .IsRequired();
 
             modelBuilder.Entity<LessonPlan>()
+                .HasOne(a => a.Teacher)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Lesson>()
                 .HasOne(a => a.Teacher)
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);

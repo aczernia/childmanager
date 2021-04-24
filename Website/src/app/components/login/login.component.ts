@@ -25,8 +25,15 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.get('username').value,
       password: this.loginForm.get('password').value
     }).subscribe((response: LoginOutputModel) => {
+      localStorage.setItem('teacherId', response.teacherId.toString());
       if (response.isAdmin){
         this.router.navigateByUrl('/admin/menu');
+      }
+      else if(response.educatorClassId) {
+        this.router.navigateByUrl('/teacher/absence-list');
+      }
+      else {
+        this.router.navigateByUrl('/teacher/absence');
       }
     })
   }

@@ -69,6 +69,7 @@ namespace ChildManager
             services.AddScoped<IAuthorizationService, AuthorizationService>();
             services.AddTransient<ISubjectService, SubjectService>();
             services.AddTransient<ILessonPlanService, LessonPlanService>();
+            services.AddTransient<ILessonService, LessonService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

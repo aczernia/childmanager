@@ -1,4 +1,5 @@
-﻿using ChildManager.Models;
+﻿using ChildManager.Exceptions;
+using ChildManager.Models;
 using ChildManager.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,19 @@ namespace ChildManager.Controllers
         public IActionResult GetForClass(int classId)
         {
             return Ok(_lessonPlanService.GetLessonPlanForClass(classId));
+        }
+
+        [HttpGet("teacher/{teacherId:int}")]
+        public IActionResult GetCurrentForTeacher(int teacherId)
+        {
+            try
+            {
+                return Ok(_lessonPlanService.GetCurrentForTeacher(teacherId));
+            }
+            catch(ObjectNotFoundException ex)
+            {
+                return NotFound();
+            }
         }
     }
 }

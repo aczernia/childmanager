@@ -8,7 +8,6 @@ import { StudentAbsenceOutputModel } from 'src/app/models/student.output-model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AbsenceListComponent implements OnInit {
-
   @Input() absences: StudentAbsenceOutputModel[];
 
   @Output() justify = new EventEmitter<StudentAbsenceOutputModel>();

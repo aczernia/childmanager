@@ -1,0 +1,19 @@
+<div class="inside-container" *ngIf="currentLessonPlan">
+    <h2>
+        Obecność - {{currentLessonPlan.teacher.name}} {{currentLessonPlan.teacher.lastName}} - {{currentLessonPlan.class.name}}
+    </h2>
+    <form [formGroup]="lessonForm">
+        <mat-form-field>
+            <input matInput placeholder="Temat" formControlName="topic" />
+        </mat-form-field>
+        <div *ngFor="let student of students">
+            <div class="student-item">
+                <div>{{student.name}} {{student.lastName}}</div>
+                <div>
+                    <input type="checkbox" (change)="handleCheckboxChange($event)" [value]="student.id" />Obecny
+                </div>
+            </div>
+        </div>
+    </form>
+    <button (click)="handleSave()" mat-raised-button>Zapisz</button>
+</div>
