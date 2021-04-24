@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 import { StudentAbsenceOutputModel } from 'src/app/models/student.output-model';
 import { AbsenceService } from 'src/app/services/absence.service';
 
@@ -38,4 +39,7 @@ export class AbsenceListComponent implements OnInit {
     })
   }
 
+  formatDateTime(date: Date): string{
+    return moment(date).local().format('D-MM-YYYY HH:mm').toString();
+  }
 }

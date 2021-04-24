@@ -7,6 +7,7 @@ import { AbsenceListComponent } from './absence-list/absence-list.component';
 import { JustificationComponent } from './justification/justification.component';
 import { LessonListComponent } from './lesson-list/lesson-list.component';
 import { StudentListComponent } from './student-list/student-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
     path: 'absence/:studentId',
     component: JustificationComponent
   },
+  {
+    path: 'lesson-list/:classId',
+    component: LessonListComponent
+  },
 ]
 
 @NgModule({
@@ -32,7 +37,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MaterialModuleModule
+    MaterialModuleModule,
+    ReactiveFormsModule
   ]
 })
 export class TeacherModule { }

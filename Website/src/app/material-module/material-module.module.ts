@@ -9,6 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox'; 
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [],
@@ -23,8 +24,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatCheckboxModule,
     MatSelectModule,
     MatOptionModule,
+    MatIconModule,
     NgxMaterialTimepickerModule
   ],
-  exports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, MatButtonModule, MatTableModule, MatCheckboxModule, MatSelectModule, MatOptionModule, NgxMaterialTimepickerModule]
+  exports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, MatButtonModule, MatTableModule, MatCheckboxModule, MatSelectModule, 
+    MatOptionModule, NgxMaterialTimepickerModule, MatIconModule]
 })
 export class MaterialModuleModule { }

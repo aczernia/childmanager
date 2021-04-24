@@ -60,14 +60,14 @@ export class SchedulerComponent implements OnInit {
     return items;
   }
   formatTime(date: Date): string{
-    return moment(date).local().format('hh:mm').toString();
+    return moment(date).local().format('HH:mm').toString();
   }
   addItem() {
     this.lessonPlanService.addLesson({
       classId: this.currentClassId,
       dayOfWeek: parseInt(this.lessonForm.get('dayOfWeek').value, 10),
-      lessonStart: moment(this.lessonForm.get('lessonStart').value, 'hh:mm A').local().add(moment.duration(2,'hours')).toDate(),
-      lessonStop: moment(this.lessonForm.get('lessonStop').value, 'hh:mm A').local().add(moment.duration(2,'hours')).toDate(),
+      lessonStart: moment(this.lessonForm.get('lessonStart').value, 'HH:mm A').local().add(moment.duration(2,'hours')).toDate(),
+      lessonStop: moment(this.lessonForm.get('lessonStop').value, 'HH:mm A').local().add(moment.duration(2,'hours')).toDate(),
       subjectId: parseInt(this.lessonForm.get('subjectId').value, 10),
       teacherId: parseInt(this.lessonForm.get('teacherId').value, 10)
     }).subscribe(() => {
