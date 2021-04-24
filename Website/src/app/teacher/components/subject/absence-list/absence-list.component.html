@@ -1,0 +1,23 @@
+<table mat-table [dataSource]="absences" class="table">
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Data </th>
+        <td mat-cell *matCellDef="let element"> {{element.date | date: 'short'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="justified">
+        <th mat-header-cell *matHeaderCellDef> Usprawiedliwiony </th>
+        <td mat-cell *matCellDef="let element"> {{element.justified ? 'tak' : 'nie'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="controls">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="justify.emit(element)">
+            Usprawiedliw
+          </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
