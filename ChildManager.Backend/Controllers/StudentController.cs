@@ -13,7 +13,6 @@ using Microsoft.EntityFrameworkCore;
 namespace ChildManager.Controllers
 {
     [Route("api/student")]
-    [Authorize]
     public class StudentController : ControllerBase
     {
         private readonly IStudentService _studentService;
@@ -42,7 +41,6 @@ namespace ChildManager.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Teacher,Admin")]
         public ActionResult Delete([FromRoute] int id)
         {
             var isDelete = _studentService.Delete(id);
@@ -76,8 +74,7 @@ namespace ChildManager.Controllers
             return Ok(student);
         }
 
-        [HttpPost]
-        [Authorize(Roles = "Admin,Teacher")]
+        [HttpPost]        
         public ActionResult CreatStudent([FromBody] StudentInputModel dto)
         {
           var id =  _studentService.Create(dto);

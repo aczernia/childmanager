@@ -75,9 +75,15 @@ namespace ChildManager.Services
         {
             var classEntity = new Class()
             {
-                ClassName = dto.Name
+                ClassName = dto.Name,
             };
             _dbContext.Classes.Add(classEntity);
+            _dbContext.SaveChanges();
+
+            var teacher = _dbContext.Teachers.FirstOrDefault(a => a.Id == dto.TeacherId);
+            teacher.ClassId = classEntity.Id;
+
+            _dbContext.Update(teacher);
             _dbContext.SaveChanges();
 
             return classEntity.Id;

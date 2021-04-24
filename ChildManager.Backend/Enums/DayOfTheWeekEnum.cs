@@ -2,12 +2,12 @@
 {
     public enum DayOfTheWeekEnum
     {
-        Poniedzialek = 1,
-        Wtorek = 2,
-        Sroda = 3,
-        Czwartek = 4,
-        Piatek = 5,
-        Sobota = 6,
-        Niedziela = 7
+        Niedziela = 0,
+        Pniedzialek = 1,
+        Wtorek = 3,
+        Sroda = 4,
+        Czwartek = 5,
+        Piatek = 6,
+        Sobota = 7
     }
 }

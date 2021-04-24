@@ -54,6 +54,10 @@ export class StudentService extends BaseRestHttpService<StudentInputModel, Stude
     )
   }
 
+  getPlainStudentsAssignedToClass(classId: number): Observable<StudentOutputModel[]> {
+    return this.httpClient.get<StudentOutputModel[]>(`${this.classUrl}/${classId}/student`, this.httpOptions);
+  }
+
   getStudentsAssignedToClass(classId: number): Observable<StudentAbsencesOutputModel[]> {
     return of([
       {

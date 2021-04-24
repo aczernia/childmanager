@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AbsenceComponent } from './components/subject/absence/absence.component';
 import { RouterModule, Routes } from '@angular/router';
+import { AbsenceComponent } from './absence/absence.component';
 import { MaterialModuleModule } from '../material-module/material-module.module';
-import { StudentListComponent } from './components/subject/student-list/student-list.component';
-import { JustificationComponent } from './components/subject/justification/justification.component';
-import { AbsenceListComponent } from './components/subject/absence-list/absence-list.component';
-
+import { AbsenceListComponent } from './absence-list/absence-list.component';
+import { JustificationComponent } from './justification/justification.component';
+import { LessonListComponent } from './lesson-list/lesson-list.component';
+import { StudentListComponent } from './student-list/student-list.component';
 
 const routes: Routes = [
   {
     path: 'absence',
     component: AbsenceComponent
+  },
+  {
+    path: 'absence-list',
+    component: AbsenceListComponent
   },
   {
     path: 'absence/:studentId',
@@ -20,7 +24,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AbsenceComponent, StudentListComponent, JustificationComponent, AbsenceListComponent],
+  declarations: [AbsenceComponent, StudentListComponent, JustificationComponent, AbsenceListComponent, LessonListComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

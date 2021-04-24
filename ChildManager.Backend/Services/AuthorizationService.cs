@@ -8,8 +8,6 @@ using ChildManager.Entities;
 using ChildManager.Enums;
 using ChildManager.Exceptions;
 using ChildManager.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ChildManager.Services
@@ -77,7 +75,8 @@ namespace ChildManager.Services
             {
                 Token = token,
                 IsAdmin = teacher.IsAdmin,
-                EducatorClassId = teacher.ClassId
+                EducatorClassId = teacher.ClassId,
+                TeacherId = teacher.Id
             };
         }
     }

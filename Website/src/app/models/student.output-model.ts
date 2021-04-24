@@ -6,9 +6,9 @@ export class StudentOutputModel {
   pesel: string;
 }
 
-export interface StudentAbsenceOutputModel {
-  id: number,
-  date: Date,
+export class StudentAbsenceOutputModel {
+  id: number;
+  date: Date;
   justified: boolean;
 }
 

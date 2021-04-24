@@ -13,25 +13,4 @@ export class ClassService extends BaseRestHttpService<ClassInputModel, ClassOutp
   getEndpointUrl(): string {
     return this.classUrl;
   }
-
-  getAll(): Observable<ClassOutputModel[]> {
-    return of([
-      {
-        id: 0,
-        name: 'Klasa 1'
-      },
-      {
-        id: 1,
-        name: 'Klasa 2'
-      },
-      {
-        id: 2,
-        name: 'Klasa 3'
-      },
-      {
-        id: 3,
-        name: 'Klasa 4'
-      }
-    ]);
-  }
 }
