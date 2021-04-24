@@ -1,16 +1,15 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { StudentAbsenceOutputModel, StudentAbsencesOutputModel } from 'src/app/models/student.output-model';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',
   styleUrls: ['./student-list.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StudentListComponent implements OnInit {
-
-  @Input() students: StudentAbsencesOutputModel[];
-
+  students: StudentAbsencesOutputModel[] = [];
   displayedColumns = [
     'name',
     'lastName',
@@ -20,13 +19,20 @@ export class StudentListComponent implements OnInit {
     'controls'
   ]
 
-  constructor() { }
+  constructor(private studentsService: StudentService, private router: Router) { }
 
   ngOnInit(): void {
+    const classId = localStorage.getItem('classId');
+    this.studentsService.getStudentsAssignedToClass(parseInt(classId, 10)).subscribe((items) => {
+      this.students = items;
+    })
   }
 
   getJustifiedAbsences(absences: StudentAbsenceOutputModel[]): StudentAbsenceOutputModel[] {
     return absences.filter(absence => absence.justified)
   }
 
+  redirectToAbsenceList(studentId: number) {
+    this.router.navigateByUrl(`/teacher/absence-list/${studentId}`);
+  }
 }

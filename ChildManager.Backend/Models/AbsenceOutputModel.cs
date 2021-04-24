@@ -1,9 +1,11 @@
-﻿namespace ChildManager.Models
+﻿using System;
+
+namespace ChildManager.Models
 {
     public class AbsenceOutputModel
     {
-        public int StudentId { get; set; }
-        public string StudentName { get; set; }
-        public string LessonDateTime { get; set; }
+        public int Id { get; set; }
+        public DateTime Date { get; set; }
+        public bool Justified { get; set; }
     }
 }

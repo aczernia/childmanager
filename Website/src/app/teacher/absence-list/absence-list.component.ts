@@ -1,14 +1,15 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { StudentAbsenceOutputModel } from 'src/app/models/student.output-model';
+import { AbsenceService } from 'src/app/services/absence.service';
 
 @Component({
   selector: 'app-absence-list',
   templateUrl: './absence-list.component.html',
   styleUrls: ['./absence-list.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AbsenceListComponent implements OnInit {
-  @Input() absences: StudentAbsenceOutputModel[];
+  absences: StudentAbsenceOutputModel[];
 
   @Output() justify = new EventEmitter<StudentAbsenceOutputModel>();
 
@@ -18,9 +19,23 @@ export class AbsenceListComponent implements OnInit {
     'controls'
   ];
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute, private absenceService: AbsenceService) { }
 
   ngOnInit(): void {
+    const studentId = parseInt(this.activatedRoute.snapshot.paramMap.get('studentId'), 10);
+    this.absenceService.getAbsencesForStudent(studentId).subscribe((items) => {
+      this.absences = items;
+    })
+  }
+
+  justifyAbsence(id: number) {
+    this.absenceService.justifyAbsence(id)
+    .subscribe(() => {
+      const studentId = parseInt(this.activatedRoute.snapshot.paramMap.get('studentId'), 10);
+      this.absenceService.getAbsencesForStudent(studentId).subscribe((items) => {
+        this.absences = items;
+      })
+    })
   }
 
 }

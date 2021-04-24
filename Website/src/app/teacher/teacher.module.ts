@@ -14,8 +14,12 @@ const routes: Routes = [
     component: AbsenceComponent
   },
   {
-    path: 'absence-list',
+    path: 'absence-list/:studentId',
     component: AbsenceListComponent
+  },
+  {
+    path: 'students-list',
+    component: StudentListComponent
   },
   {
     path: 'absence/:studentId',
