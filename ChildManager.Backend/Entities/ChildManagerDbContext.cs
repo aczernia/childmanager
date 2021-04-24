@@ -1,19 +1,25 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Security.Cryptography.Xml;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChildManager.Entities
 {
     public class ChildManagerDbContext : DbContext
     {
         private string _connectionString =
-            "Server=.;Database=ChildManagerDb;Trusted_Connection=True;Integrated Security=true";
+            "Server=(localdb)\\MSSQLLocalDB ;Database=ChildManagerDb;Trusted_Connection=True;Integrated Security=true";
+
 
         public DbSet<Student> Students { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Journal> Journals { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<User> Users { get; set; }
+
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<LessonPlan> LessonPlans { get; set; }
 
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,6 +43,15 @@ namespace ChildManager.Entities
             modelBuilder.Entity<Subject>()
                 .Property(a => a.Name)
                 .IsRequired();
+
+            modelBuilder.Entity<User>()
+                .Property(X => X.Email)
+                .IsRequired();
+
+            modelBuilder.Entity<Role>()
+                .Property(x => x.Name).IsRequired();
+
+
 
         }
 
